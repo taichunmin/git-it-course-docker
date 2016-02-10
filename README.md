@@ -9,5 +9,5 @@
 ## 安裝
 
 ```sh
-sudo apt-get install tmux php5
+sudo apt-get install tmux
 ```
