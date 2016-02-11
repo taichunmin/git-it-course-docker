@@ -5,7 +5,7 @@ LABEL version="1.0" role="git-it-client"
 
 # install software
 RUN apt-get -qq update && \
-    apt-get install -qy nano nodejs npm git openssh-server
+    apt-get install -qqy nano nodejs npm git openssh-server
 
 # link nodejs to node
 RUN ln -s /usr/bin/nodejs /usr/bin/node
@@ -25,3 +25,6 @@ EXPOSE 22
 VOLUME ["/root/.config/git-it/"]
 
 CMD ["/usr/sbin/sshd", "-D"]
+
+# docker build -t git-it-client client/
+# docker run -d -P git-it-client
