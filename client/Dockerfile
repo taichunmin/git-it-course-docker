@@ -5,10 +5,11 @@ LABEL version="1.0" role="git-it-client"
 
 ADD crontab /etc/crontab
 ADD client-start.sh /usr/bin/client-start.sh
+ADD scoreboard-reporter.sh /usr/bin/scoreboard-reporter.sh
 
 # install software
 RUN apt-get -qq update && \
-    apt-get install -qqy nano nodejs npm git openssh-server rsyslog
+    apt-get install -qqy nano nodejs npm git openssh-server rsyslog curl
 
 # link nodejs to node
 RUN ln -s /usr/bin/nodejs /usr/bin/node
@@ -22,6 +23,7 @@ RUN mkdir /var/run/sshd && \
     sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
 RUN chmod +x /usr/bin/client-start.sh
+RUN chmod +x /usr/bin/scoreboard-reporter.sh
 RUN touch /var/log/cron.log
 
 # for ssh https://docs.docker.com/engine/examples/running_ssh_service/
