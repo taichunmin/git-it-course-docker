@@ -31,8 +31,7 @@ php -r "unlink('composer-setup.php');"
 RUN cd /var/www && \
 git clone https://github.com/taichunmin/git-it-course-scoreboard.git && \
 cd /var/www/git-it-course-scoreboard && \
-composer install && \
-php artisan key:generate
+composer install
 
 # modify apache setting
 RUN sed -ri 's#DocumentRoot /var/www/html$#DocumentRoot /var/www/git-it-course-scoreboard/public#' /etc/apache2/sites-enabled/000-default.conf && \
