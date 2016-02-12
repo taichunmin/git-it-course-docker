@@ -6,5 +6,5 @@ git pull
 php artisan key:generate
 service apache2 start
 service redis_6379 start
-service sshd start
+/usr/sbin/sshd
 tail -F /var/log/apache2/access.log
