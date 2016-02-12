@@ -24,6 +24,7 @@ RUN mkdir /var/run/sshd && \
 echo 'root:git-it' | chpasswd && \
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
+
 RUN touch /var/log/cron.log
 
 # for ssh https://docs.docker.com/engine/examples/running_ssh_service/

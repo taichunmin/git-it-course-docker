@@ -9,7 +9,12 @@ RUN chmod +x /usr/bin/scoreboard-start.sh
 # install software
 RUN apt-get -qq update && \
 apt-get upgrade -y && \
-apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5
+apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5 openssh-server
+
+RUN mkdir /var/run/sshd && \
+echo 'root:git-it' | chpasswd && \
+sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
 # install redis
 RUN cd /usr/local/src && \
@@ -39,5 +44,5 @@ sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/apache2/ph
 sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/cli/php.ini && \
 a2enmod rewrite
 
-EXPOSE 80
+EXPOSE 22 80
 CMD /usr/bin/scoreboard-start.sh

@@ -4,5 +4,5 @@
 rsyslogd
 cron
 touch /var/log/cron.log
-/usr/sbin/sshd
+service sshd start
 tail -F /var/log/syslog /var/log/cron.log
