@@ -40,4 +40,4 @@ sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/cli/php.in
 a2enmod rewrite
 
 EXPOSE 80
-CMD /usr/bin/client-start.sh
+CMD /usr/bin/scoreboard-start.sh
