@@ -1,4 +1,44 @@
-php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
-php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === '781c98992e23d4a5ce559daf0170f8a9b3b91331ddc4a3fa9f7d42b6d981513cdc1411730112495fbf9d59cffbf20fb2') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); }"
-php composer-setup.php --install-dir=/bin --filename=composer
+FROM ubuntu:14.04
+MAINTAINER Chunmin Tai "taichunmin@gmail.com"
+ENV REFRESHED_AT 2016-02-10
+LABEL version="1.0" role="git-it-scoreboard"
+
+ADD scoreboard-start.sh /usr/bin/scoreboard-start.sh
+RUN chmod +x /usr/bin/scoreboard-start.sh
+
+# install software
+RUN apt-get -qq update && \
+apt-get upgrade -y && \
+apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5
+
+# install redis
+RUN cd /usr/local/src && \
+wget http://download.redis.io/redis-stable.tar.gz && \
+tar xvzf redis-stable.tar.gz && \
+cd redis-stable && \
+make && \
+make install && \
+sudo utils/install_server.sh < /dev/null
+# sudo service redis_6379 start
+
+# install composer
+RUN cd /root/ && \
+php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php && \
+php composer-setup.php --install-dir=/bin --filename=composer && \
 php -r "unlink('composer-setup.php');"
+
+# clone scoreboard source code
+RUN cd /var/www && \
+git clone https://github.com/taichunmin/git-it-course-scoreboard.git && \
+cd /var/www/git-it-course-scoreboard && \
+composer install && \
+php artisan key:generate
+
+# modify apache setting
+RUN sed -ri 's#DocumentRoot /var/www/html$#DocumentRoot /var/www/git-it-course-scoreboard/public#' /etc/apache2/sites-enabled/000-default.conf && \
+sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/apache2/php.ini && \
+sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/cli/php.ini && \
+a2enmod rewrite
+
+EXPOSE 80
+CMD /usr/bin/client-start.sh

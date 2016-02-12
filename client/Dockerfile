@@ -6,10 +6,13 @@ LABEL version="1.0" role="git-it-client"
 ADD crontab /etc/crontab
 ADD client-start.sh /usr/bin/client-start.sh
 ADD scoreboard-reporter.sh /usr/bin/scoreboard-reporter.sh
+RUN chmod +x /usr/bin/client-start.sh && \
+chmod +x /usr/bin/scoreboard-reporter.sh
 
 # install software
 RUN apt-get -qq update && \
-    apt-get install -qqy nano nodejs npm git openssh-server rsyslog curl
+apt-get upgrade -y && \
+apt-get install -qqy nano nodejs npm git openssh-server rsyslog curl
 
 # link nodejs to node
 RUN ln -s /usr/bin/nodejs /usr/bin/node
@@ -18,23 +21,15 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN npm install -g git-it
 
 RUN mkdir /var/run/sshd && \
-    echo 'root:git-it' | chpasswd && \
-    sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-    sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
-
-RUN chmod +x /usr/bin/client-start.sh
-RUN chmod +x /usr/bin/scoreboard-reporter.sh
+echo 'root:git-it' | chpasswd && \
+sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 RUN touch /var/log/cron.log
 
 # for ssh https://docs.docker.com/engine/examples/running_ssh_service/
 EXPOSE 22
 
-# for git-it config file
-VOLUME ["/root/.config/git-it/"]
-
-
 CMD /usr/bin/client-start.sh
-#CMD ["/usr/sbin/sshd", "-D"]
 
 # docker build -t git-it-client client/
 # docker run -d -P git-it-client
