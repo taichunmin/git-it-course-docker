@@ -38,12 +38,14 @@ git clone https://github.com/taichunmin/git-it-course-scoreboard.git && \
 cd /var/www/git-it-course-scoreboard && \
 composer install && \
 chmod -R a+rw storage && \
-chmod -R a+rw bootstrap/cache
+chmod -R a+rw bootstrap/cache && \
+cp .env.example .env
 
 # modify apache setting
 RUN sed -ri 's#DocumentRoot /var/www/html$#DocumentRoot /var/www/git-it-course-scoreboard/public#' /etc/apache2/sites-enabled/000-default.conf && \
 sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/apache2/php.ini && \
 sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/cli/php.ini && \
+sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf && \
 a2enmod rewrite
 
 EXPOSE 22 80
