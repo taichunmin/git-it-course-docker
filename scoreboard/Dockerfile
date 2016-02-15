@@ -12,7 +12,7 @@ apt-get upgrade -y && \
 apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5 openssh-server
 
 RUN mkdir /var/run/sshd && \
-echo 'root:git-it' | chpasswd && \
+echo 'root:scoreboard' | chpasswd && \
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
