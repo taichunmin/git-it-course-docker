@@ -16,15 +16,21 @@ echo 'root:git-it' | chpasswd && \
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
-# install redis
-RUN cd /usr/local/src && \
+# install redis https://github.com/dockerfile/redis/blob/master/Dockerfile
+RUN cd /tmp && \
 wget http://download.redis.io/redis-stable.tar.gz && \
 tar xvzf redis-stable.tar.gz && \
 cd redis-stable && \
 make && \
 make install && \
-utils/install_server.sh < /dev/null && \
-service redis_6379 stop
+cp -f src/redis-sentinel /usr/local/bin && \
+mkdir -p /etc/redis && \
+cp -f *.conf /etc/redis && \
+rm -rf /tmp/redis-stable* && \
+sed -i 's/^\(bind .*\)$/# \1/' /etc/redis/redis.conf && \
+sed -i 's/^\(daemonize .*\)$/# \1/' /etc/redis/redis.conf && \
+sed -i 's/^\(dir .*\)$/# \1\ndir \/data/' /etc/redis/redis.conf && \
+sed -i 's/^\(logfile .*\)$/# \1/' /etc/redis/redis.conf
 
 # install composer
 RUN cd /root/ && \
