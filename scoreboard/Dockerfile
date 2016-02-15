@@ -23,8 +23,8 @@ tar xvzf redis-stable.tar.gz && \
 cd redis-stable && \
 make && \
 make install && \
-sudo utils/install_server.sh < /dev/null
-# sudo service redis_6379 start
+utils/install_server.sh < /dev/null && \
+service redis_6379 stop
 
 # install composer
 RUN cd /root/ && \
