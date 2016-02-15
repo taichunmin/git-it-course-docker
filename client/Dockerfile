@@ -12,7 +12,7 @@ chmod +x /usr/bin/scoreboard-reporter.sh
 # install software
 RUN apt-get -qq update && \
 apt-get upgrade -y && \
-apt-get install -qqy nano nodejs npm git openssh-server rsyslog curl
+apt-get install -qqy nano nodejs npm git openssh-server rsyslog curl vim
 
 # link nodejs to node
 RUN ln -s /usr/bin/nodejs /usr/bin/node
