@@ -9,7 +9,7 @@ services:
   client:
     build: client/
     ports:
-      - "22001-22999"
+      - "22"
     links:
       - scoreboard
     depends_on:
