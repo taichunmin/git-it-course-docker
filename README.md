@@ -70,6 +70,12 @@ git clone https://github.com/taichunmin/git-it-course-docker.git
 cd ~/git-it-course-docker/
 ```
 
+### 幫腳本增加執行權限
+
+```bash
+chmod +x port-reporter.sh
+```
+
 ### 使用 `docker-compose` 開啟機器
 
 ```bash
@@ -82,9 +88,10 @@ docker-compose up -d
 
 ```bash
 docker-compose scale client=5
+./port-reporter.sh
 ```
 
-> 後面的數量自由增減
+> `client` 的數量自由增減
 
 ### 查看 client 的 22 port 對應
 
