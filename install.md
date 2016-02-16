@@ -1,24 +1,20 @@
-# git-it 課程 Docker
+# 安裝
 
 用來建立 git-it 課程所需的 Docker，以及排行榜。
 
-![排行榜圖片](http://i.imgur.com/CO2v5fm.png)
-
-## 安裝
-
-### 環境
+## 環境
 
 使用 `DigitalOcean` 的 `Ubuntu Docker 1.10.1 on 14.04`
 
 > 如何在 Ubuntu 上安裝 Docker 可參考：<https://docs.docker.com/engine/installation/>
 
-### 安裝 tmux (建議)
+## 安裝 tmux (建議)
 
 ```bash
 sudo apt-get install tmux
 ```
 
-### 設定 swap (建議)
+## 設定 swap (建議)
 
 如果開的機器 RAM 較小，則建議手動新增 swap 以供 Docker 使用 (但是不建議使用在 SSD 硬碟上，會增加硬碟的損耗)。
 
@@ -45,7 +41,7 @@ sudo sysctl vm.vfs_cache_pressure=50
 sudo echo 'vm.vfs_cache_pressure = 50' >> /etc/sysctl.conf
 ```
 
-### 安裝 docker-compose
+## 安裝 docker-compose
 
 請注意 Docker Compose 的版本。
 
@@ -59,26 +55,26 @@ chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
-### 安裝 git
+## 安裝 git
 
 ```bash
 sudo apt-get install git
 ```
 
-### 下載 git-it-course-docker
+## 下載 git-it-course-docker
 
 ```bash
 git clone https://github.com/taichunmin/git-it-course-docker.git
 cd ~/git-it-course-docker/
 ```
 
-### 幫腳本增加執行權限
+## 幫腳本增加執行權限
 
 ```bash
 chmod +x port-reporter.sh
 ```
 
-### 使用 `docker-compose` 開啟機器
+## 使用 `docker-compose` 開啟機器
 
 ```bash
 docker-compose up -d
@@ -86,7 +82,7 @@ docker-compose up -d
 
 > `-d` 是代表以 daemon 模式執行。
 
-### 開啟多台 client 機器
+## 開啟多台 client 機器
 
 ```bash
 docker-compose scale client=5
@@ -95,7 +91,7 @@ docker-compose scale client=5
 
 > `client` 的數量自由增減
 
-### 查看 client 的 22 port 對應
+## 查看 client 的 22 port 對應
 
 * 直接在 host 執行以下兩種指令的其中一個
 
@@ -112,12 +108,12 @@ docker ps --filter "label=role=git-it-client" --format "{{.ID}} = {{.Ports}}" | 
 ./port-reporter.sh
 ```
 
-### 查看資源使用量
+## 查看資源使用量
 
 ```bash
 docker stats
 ```
 
-## 查看 git-it 計分板
+# 查看 git-it 計分板
 
 * <http://localhost/>
