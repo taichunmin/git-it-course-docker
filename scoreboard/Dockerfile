@@ -14,7 +14,8 @@ apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-m
 RUN mkdir /var/run/sshd && \
 echo 'root:scoreboard' | chpasswd && \
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
+sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd && \
+chage -d 0 root
 
 # install redis https://github.com/dockerfile/redis/blob/master/Dockerfile
 RUN cd /tmp && \
