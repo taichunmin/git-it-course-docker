@@ -18,7 +18,7 @@
 sudo apt-get install tmux
 ```
 
-### 設定 swap
+### 設定 swap (建議)
 
 如果開的機器 RAM 較小，則建議手動新增 swap 以供 Docker 使用 (但是不建議使用在 SSD 硬碟上，會增加硬碟的損耗)。
 
@@ -97,11 +97,19 @@ docker-compose scale client=5
 
 ### 查看 client 的 22 port 對應
 
-兩種指令二選一。
+* 直接在 host 執行以下兩種指令的其中一個
 
 ```bash
 docker-compose ps
 docker ps --filter "label=role=git-it-client" --format "{{.ID}} = {{.Ports}}" | sort
+```
+
+* 在 scoreboard 上面查看
+
+需要先執行 `./port-reporter.sh` 將最新的 port 對應傳送給計分板，即可在計分板上面直接看到 ssh 的 port 對應。
+
+```
+./port-reporter.sh
 ```
 
 ### 查看資源使用量
@@ -110,6 +118,6 @@ docker ps --filter "label=role=git-it-client" --format "{{.ID}} = {{.Ports}}" | 
 docker stats
 ```
 
-## 查看 git-it 記分板
+## 查看 git-it 計分板
 
 * <http://localhost/>
