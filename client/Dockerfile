@@ -26,4 +26,4 @@ sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@
 # for ssh https://docs.docker.com/engine/examples/running_ssh_service/
 EXPOSE 22
 
-CMD /usr/sbin/sshd -D
+CMD /usr/bin/scoreboard-reporter.sh && /usr/sbin/sshd -D
