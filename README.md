@@ -88,8 +88,11 @@ docker-compose scale client=5
 
 ### 查看 client 的 22 port 對應
 
+兩種指令二選一。
+
 ```bash
 docker-compose ps
+docker ps --filter "label=role=git-it-client" --format "{{.ID}} = {{.Ports}}" | sort
 ```
 
 ### 查看資源使用量
