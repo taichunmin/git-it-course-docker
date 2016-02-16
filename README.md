@@ -2,6 +2,8 @@
 
 用來建立 git-it 課程所需的 Docker，以及排行榜。
 
+![排行榜圖片](http://i.imgur.com/CO2v5fm.png)
+
 ## 安裝
 
 ### 環境
