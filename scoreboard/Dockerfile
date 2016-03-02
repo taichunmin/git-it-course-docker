@@ -3,13 +3,14 @@ MAINTAINER Chunmin Tai "taichunmin@gmail.com"
 ENV REFRESHED_AT 2016-02-10
 LABEL version="1.0" role="git-it-scoreboard"
 
+ADD crontab /etc/crontab
 ADD scoreboard-start.sh /usr/bin/scoreboard-start.sh
 RUN chmod +x /usr/bin/scoreboard-start.sh
 
 # install software
 RUN apt-get -qq update && \
 apt-get upgrade -y && \
-apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5 openssh-server
+apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5 openssh-server rsyslog
 
 RUN mkdir /var/run/sshd && \
 echo 'root:scoreboard' | chpasswd && \
@@ -51,6 +52,8 @@ sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/apache2/ph
 sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/cli/php.ini && \
 sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf && \
 a2enmod rewrite
+
+RUN touch /var/log/cron.log
 
 EXPOSE 22 80
 CMD /usr/bin/scoreboard-start.sh

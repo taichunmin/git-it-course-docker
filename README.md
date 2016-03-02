@@ -17,5 +17,6 @@ git-it 容器是給學員透過使用 git-it 來練習 git，在 client 的 Dock
 * [學員說明文件](student.md)
 * [講師說明文件](teacher.md)
 * [安裝說明](install.md)
+* [使用 DockerCloud](dockercloud.md)
 
 如有任何建議，請多指教。

@@ -7,4 +7,7 @@ php artisan key:generate
 service apache2 start
 redis-server /etc/redis/redis.conf &
 /usr/sbin/sshd
-tail -F /var/log/apache2/access.log
+rsyslogd
+cron
+env | grep _ >> /etc/environment
+tail -F /var/log/apache2/access.log /var/log/syslog /var/log/cron.log
