@@ -10,7 +10,7 @@ RUN chmod +x /usr/bin/scoreboard-start.sh
 # install software
 RUN apt-get -qq update && \
 apt-get upgrade -y && \
-apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5 openssh-server rsyslog
+apt-get install -qqy build-essential tcl8.5 php5 git wget php5-json libapache2-mod-php5 openssh-server rsyslog php5-curl
 
 RUN mkdir /var/run/sshd && \
 echo 'root:scoreboard' | chpasswd && \
