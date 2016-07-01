@@ -55,9 +55,10 @@ sudo echo 'vm.vfs_cache_pressure = 50' >> /etc/sysctl.conf
 > 參考網址
 >
 > 1. <https://docs.docker.com/compose/install/>
+> 2. <https://github.com/docker/compose/releases>
 
 ```bash
-curl -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
@@ -71,6 +72,7 @@ sudo apt-get install git
 ## 下載 git-it-course-docker
 
 ```bash
+cd ~
 git clone https://github.com/taichunmin/git-it-course-docker.git
 cd ~/git-it-course-docker/
 ```
