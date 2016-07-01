@@ -6,7 +6,14 @@
 
 使用 `DigitalOcean` 的 `Ubuntu Docker 1.10.1 on 14.04`
 
+* 透過[這個連結](https://m.do.co/c/81327b020798)建立 DigitalOcean 來給我一點回饋。
+
 > 如何在 Ubuntu 上安裝 Docker 可參考：<https://docs.docker.com/engine/installation/>
+
+```sh
+# Add an apt source entry for your Ubuntu operating system
+sudo apt-add-repository "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main"
+```
 
 ## 安裝 tmux (建議)
 
