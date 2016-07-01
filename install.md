@@ -48,6 +48,28 @@ sudo sysctl vm.vfs_cache_pressure=50
 sudo echo 'vm.vfs_cache_pressure = 50' >> /etc/sysctl.conf
 ```
 
+## 設定 docker-daemon 所聽的 port
+
+* 使用以下的 IP 來取得 docker0 所使用的 IP
+
+```sh
+ifconfig docker0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}'
+# 假設查到 172.17.0.1
+```
+
+* 將取得的 IP 設定於 `/etc/default/docker` 之中
+
+```sh
+# 加上 -H tcp://<你所查到的 IP>:2375 -H unix:///var/run/docker.sock
+DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 -H tcp://172.17.0.1:2375 -H unix:///var/run/docker.sock"
+```
+
+* 重新啟動 docker
+
+```sh
+service docker restart
+```
+
 ## 安裝 docker-compose
 
 請注意 Docker Compose 的版本。
