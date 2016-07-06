@@ -1,1 +1,1 @@
-* * * * * nobody /usr/bin/php /var/www/git-it-course-scoreboard/artisan schedule:run >> /dev/null 2>&1
+* * * * * www-data /usr/bin/php /var/www/git-it-course-scoreboard/artisan schedule:run >> /dev/null 2>&1
