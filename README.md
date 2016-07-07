@@ -2,7 +2,7 @@
 
 DEMO 影片 ↓↓↓
 
-[![DEMO](http://img.youtube.com/vi/NjcGE-mbIM8/0.jpg)](https://youtu.be/NjcGE-mbIM8 "DEMO")
+[![DEMO](http://i.imgur.com/nfHpH04.png)](https://youtu.be/NjcGE-mbIM8 "DEMO")
 
 歡迎光臨！
 
