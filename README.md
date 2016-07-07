@@ -1,6 +1,8 @@
 # git-it 課程 Docker
 
-![排行榜圖片](http://i.imgur.com/CO2v5fm.png)
+DEMO 影片 ↓↓↓
+
+[![DEMO](http://img.youtube.com/vi/NjcGE-mbIM8/0.jpg)](https://youtu.be/NjcGE-mbIM8 "DEMO")
 
 歡迎光臨！
 
