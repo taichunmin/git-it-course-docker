@@ -1,6 +1,7 @@
 #!/bin/sh
 # client-start.sh
 
+sleep 5
 rsyslogd
 cron
 /usr/sbin/sshd
