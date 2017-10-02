@@ -11,7 +11,7 @@
 * user: `root`
 * pass: `git-it`
 
-## 在 wineos 使用 ssh
+## 在 windows 使用 ssh
 
 Secure Shell（縮寫為SSH），由IETF的網路工作小組（Network Working Group）所制定；SSH為一項建立在應用層和傳輸層基礎上的安全協定，為電腦上的Shell（殼層）提供安全的傳輸和使用環境。
 
@@ -28,12 +28,35 @@ Secure Shell（縮寫為SSH），由IETF的網路工作小組（Network Working 
 
 ### 輸入帳號密碼
 
-## 在 Unix-like 使用 ssh
+* 請輸入預設使用者名稱 `root`
+* 請輸入預設密碼 `git-it`
+* 接下來會提示你改密碼，請輸入兩次一樣的密碼
+* 改完密碼後會自動斷線
+* 再重新連線至機器
+* 輸入你剛剛設定的新密碼
+* 如果忘記密碼請找講師
 
-## 輸入 git-it 選題
+## 在 Linux 或 Mac 使用 ssh
+
+```shell
+# 請自行替換 [host] 和 [port]
+ssh root@[host] -p [port]
+```
+
+* 請輸入預設密碼 `git-it`
+* 接下來會提示你改密碼，請輸入兩次一樣的密碼
+* 改完密碼後會自動斷線
+* 再重新連線至機器
+* 輸入你剛剛設定的新密碼
+* 如果忘記密碼請找講師
+
+## git-it 使用教學
 
 ```sh
+# 選擇題目
 git-it
+# 驗證是否完成
+git-it verify
 ```
 
 ## nano 使用教學
@@ -47,4 +70,3 @@ nano readme.txt
 ```sh
 vim readme.txt
 ```
-

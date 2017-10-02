@@ -1,35 +1,32 @@
-FROM ubuntu:14.04
+FROM node:latest
 MAINTAINER Chunmin Tai "taichunmin@gmail.com"
-ENV REFRESHED_AT 2016-02-10
-LABEL version="1.0" role="git-it-client"
-
-ADD crontab /etc/crontab
-ADD client-start.sh /usr/bin/client-start.sh
-ADD scoreboard-reporter.sh /usr/bin/scoreboard-reporter.sh
-RUN chmod +x /usr/bin/client-start.sh && \
-chmod +x /usr/bin/scoreboard-reporter.sh
+ENV REFRESHED_AT 2017-10-02
+ENV DEBIAN_FRONTEND noninteractive
+LABEL version="2.0" role="git-it-client"
 
 # install software
 RUN apt-get -qq update && \
-apt-get upgrade -y && \
-apt-get install -qqy nano nodejs npm git openssh-server rsyslog curl vim
-
-# link nodejs to node
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+apt-get install -qqy curl git openssh-server nano vim
 
 # install git-it
 RUN npm install -g git-it && \
-sed -i '/completed = this.getData/a\\n        var exec = require("child_process").exec\n        exec("scoreboard-reporter.sh", function(err, stdout, stderr) {})' /usr/local/lib/node_modules/git-it/node_modules/workshopper-jlord/workshopper.js
-
-RUN mkdir /var/run/sshd && \
-echo 'root:git-it' | chpasswd && \
-sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd && \
-chage -d 0 root
-
-RUN touch /var/log/cron.log
+sed -i '/completed = this.getData/a\\n        var exec = require("child_process").exec\n        exec("dashboard-reporter.sh", function(err, stdout, stderr) {})' "$(npm root -g)/git-it/node_modules/workshopper-jlord/workshopper.js" && \
+sed -i '/Preferentially/a\\n        var exec = require("child_process").exec\n        exec("dashboard-reporter.sh", function(err, stdout, stderr) {})' "$(npm root -g)/git-it/node_modules/workshopper-jlord/workshopper.js"
 
 # for ssh https://docs.docker.com/engine/examples/running_ssh_service/
+RUN mkdir /var/run/sshd && \
+echo 'root:git-it' | chpasswd && \
+sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \
+chage -d 0 root
 EXPOSE 22
 
-CMD /usr/bin/client-start.sh
+RUN echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/motd' >> /etc/bash.bashrc && \
+    echo '/usr/bin/dashboard-reporter.sh > /dev/null 2>&1' >> /etc/bash.bashrc
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY docker-entrypoint.sh dashboard-reporter.sh /usr/bin/
+RUN chmod +x /usr/bin/dashboard-reporter.sh && chmod +x /usr/bin/docker-entrypoint.sh
+CMD ["/usr/bin/docker-entrypoint.sh"]
