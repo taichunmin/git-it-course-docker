@@ -1,18 +1,32 @@
 version: '2'
 services:
-  scoreboard:
-    build: scoreboard/
-    ports:
-      - "80:80"
-      - "22000:22"
-    container_name: scoreboard
+  dashboard:
+    build: dashboard/
+    networks:
+      - frontend
+      - backend
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./webapp:/var/www/html
+      - ./dashboard/motd:/etc/motd:ro
+    ports:
+      - "80:80"
+  redis:
+    image: redis:latest
+    networks:
+      - backend
   client:
     build: client/
+    networks:
+      - frontend
+    depends_on:
+      - dashboard
+    volumes:
+      - ./client/motd:/etc/motd:ro
     ports:
       - "22"
-    links:
-      - scoreboard
-    depends_on:
-      - scoreboard
+networks:
+  frontend:
+    driver: "bridge"
+  backend:
+    driver: "bridge"
