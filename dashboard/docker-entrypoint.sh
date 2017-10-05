@@ -1,5 +1,5 @@
 #!/bin/bash
-# dashboard-start.sh
+# docker-entrypoint.sh
 
 cd /var/www/html
 yarn install

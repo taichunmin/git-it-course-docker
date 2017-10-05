@@ -1,5 +1,5 @@
 #!/bin/sh
-# client-start.sh
+# docker-entrypoint.sh
 
 sleep 15
 /usr/sbin/sshd

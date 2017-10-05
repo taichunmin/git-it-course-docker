@@ -1,6 +1,7 @@
 version: '2'
 services:
   dashboard:
+    build: dashboard/
     image: taichunmin/git-it-course-docker:dashboard
     networks:
       - frontend
@@ -16,6 +17,7 @@ services:
     networks:
       - backend
   client:
+    build: client/
     image: taichunmin/git-it-course-docker:client
     networks:
       - frontend
