@@ -12,7 +12,7 @@ docker-compose --version
 apt-get install htop
 apt-get autoremove -y
 
-cp webapp/.env.example webapp/.env
 git submodule update --init
+cp webapp/.env.example webapp/.env
 docker-compose build
 docker run --rm -v "$(realpath ./webapp):/root/webapp" node:latest bash -c 'cd /root/webapp && yarn install'
