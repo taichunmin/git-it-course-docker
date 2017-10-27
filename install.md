@@ -15,6 +15,7 @@
 ```shell
 git clone https://github.com/taichunmin/git-it-course-docker.git
 cd git-it-course-docker
+git config core.fileMode false
 chmod +x ./install.sh
 ./install.sh
 ```

@@ -1,8 +1,7 @@
 FROM node:latest
-MAINTAINER Chunmin Tai "taichunmin@gmail.com"
+LABEL version="2.0" role="git-it-client" maintainer="taichunmin@gmail.com"
 ENV REFRESHED_AT 2017-10-02
 ENV DEBIAN_FRONTEND noninteractive
-LABEL version="2.0" role="git-it-client"
 
 # install software
 RUN apt-get -qq update && \

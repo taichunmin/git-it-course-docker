@@ -1,8 +1,6 @@
 FROM node:latest
-MAINTAINER Chunmin Tai "taichunmin@gmail.com"
-ENV REFRESHED_AT 2017-10-02
-ENV DEBIAN_FRONTEND noninteractive
-LABEL version="2.0" role="git-it-dashboard"
+LABEL version="2.0" role="git-it-dashboard" maintainer="taichunmin@gmail.com"
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 LANGUAGE=C.UTF-8 REFRESHED_AT=2017-10-02 DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /var/www/html
 
