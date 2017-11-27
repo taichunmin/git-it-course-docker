@@ -1,7 +1,6 @@
 FROM node:latest
 LABEL version="2.0" role="git-it-client" maintainer="taichunmin@gmail.com"
-ENV REFRESHED_AT 2017-10-02
-ENV DEBIAN_FRONTEND noninteractive
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 LANGUAGE=C.UTF-8 REFRESHED_AT=2017-10-02 DEBIAN_FRONTEND=noninteractive
 
 # install software
 RUN apt-get -qq update && \

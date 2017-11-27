@@ -15,9 +15,7 @@
 ```shell
 git clone https://github.com/taichunmin/git-it-course-docker.git
 cd git-it-course-docker
-git config core.fileMode false
-chmod +x ./install.sh
-./install.sh
+bash ./install.sh
 ```
 
 ## 設定 swap (建議)
