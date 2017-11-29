@@ -3,6 +3,10 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
+export LANGUAGE=C.UTF-8
+
 apt-get update -qq && apt-get upgrade -qqy
 
 if [ ! "$(docker -v)" ]; then
