@@ -1,5 +1,6 @@
 #!/bin/bash
 # git clone https://github.com/taichunmin/git-it-course-docker.git
+set -euo pipefail
 cd "$(dirname "$0")"
 
 apt-get update -qq && apt-get upgrade -qqy
