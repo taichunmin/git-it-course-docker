@@ -13,7 +13,7 @@
   - 使用 socket.io 來即時更新資料
   - 新增 current 追蹤
   - 使用 vue.js 改寫
-  - 移除 ssh，請講師改用 `docker exec dashboard bash`
+  - 移除 ssh，請講師改用 `docker-compose exec dashboard bash`
   - 收到不存在的 mid 時自動更新 ssh ports
   - /etc/motd 顯示登入公告
   - 程式碼改用 git submodule，取代之前的 Dockerfile
