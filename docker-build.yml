@@ -3,32 +3,6 @@ services:
   dashboard:
     build: dashboard/
     image: taichunmin/git-it-course-docker:dashboard
-    networks:
-      - frontend
-      - backend
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./webapp:/var/www/html
-      - ./dashboard/motd:/etc/motd:ro
-    ports:
-      - "80:80"
-  redis:
-    image: redis:latest
-    networks:
-      - backend
   client:
     build: client/
     image: taichunmin/git-it-course-docker:client
-    networks:
-      - frontend
-    depends_on:
-      - dashboard
-    volumes:
-      - ./client/motd:/etc/motd:ro
-    ports:
-      - "22"
-networks:
-  frontend:
-    driver: "bridge"
-  backend:
-    driver: "bridge"
