@@ -10,8 +10,8 @@ COPY docker-entrypoint.sh dashboard-reporter.sh /usr/bin/
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     git \
-    openssh-server \
     nano \
+    openssh-server \
     vim \
  && rm -rf /var/lib/apt/lists/* \
 # install git-it
