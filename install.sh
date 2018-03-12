@@ -7,7 +7,7 @@ export LANG=C.UTF-8
 export LC_ALL=C.UTF-8
 export LANGUAGE=C.UTF-8
 
-sudo apt-get update -qq && sudo apt-get upgrade -qqy
+sudo apt-get update && sudo apt-get upgrade -y
 
 if [ ! "$(docker -v)" ]; then
   curl -sSL get.docker.com | sh
@@ -25,4 +25,5 @@ if [ ! -f webapp/.env ]; then
 fi
 
 sudo docker-compose pull
-docker run --rm -v "$(realpath ./webapp):/root/webapp" node:latest bash -c 'cd /root/webapp && yarn install'
+sudo docker-compose run dashboard yarn
+sudo docker-compose up -d
