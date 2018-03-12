@@ -11,10 +11,12 @@ services:
       - ./dashboard/motd:/etc/motd:ro
     ports:
       - "80:80"
+    restart: always
   redis:
     image: redis:latest
     networks:
       - backend
+    restart: always
   client:
     image: taichunmin/git-it-course-docker:client
     networks:
