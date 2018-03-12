@@ -15,34 +15,7 @@
 ```shell
 git clone https://github.com/taichunmin/git-it-course-docker.git
 cd git-it-course-docker
-bash ./install.sh
-```
-
-## 設定 swap (建議)
-
-如果開的機器 RAM 較小，則建議手動新增 swap 以供 Docker 使用 (但是不建議使用在 SSD 硬碟上，會增加硬碟的損耗)。
-
-> 參考網址
->
-> 1. <https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04>
-
-```shell
-sudo swapon -s
-free -m
-df -h
-sudo fallocate -l 4G /swapfile
-ls -lh /swapfile
-sudo chmod 600 /swapfile
-ls -lh /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-sudo swapon -s
-free -m
-sudo echo '/swapfile none swap sw 0 0' >> /etc/fstab
-sudo sysctl vm.swappiness=10
-sudo echo 'vm.swappiness = 1' >> /etc/sysctl.conf
-sudo sysctl vm.vfs_cache_pressure=50
-sudo echo 'vm.vfs_cache_pressure = 50' >> /etc/sysctl.conf
+sudo bash ./install.sh
 ```
 
 ## 使用 `docker-compose` 開啟機器

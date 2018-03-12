@@ -1,7 +1,7 @@
 #!/bin/sh
 # docker-entrypoint.sh
 
-sleep 15
+sleep 5
 /usr/sbin/sshd
 
 while true; do
