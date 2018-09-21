@@ -25,5 +25,5 @@ if [ ! -f webapp/.env ]; then
 fi
 
 sudo docker-compose pull
-sudo docker-compose run dashboard yarn
+sudo docker-compose run --rm dashboard yarn
 sudo docker-compose up -d
