@@ -4,13 +4,13 @@
 
 ## 環境
 
-使用 `DigitalOcean` 的 `Ubuntu 16.04`
+使用 `DigitalOcean` 的 `Ubuntu 20.04`
 
 * 透過[這個連結](https://m.do.co/c/81327b020798)註冊 DigitalOcean 來給我一點小費。
 
 ## 取得本專案並安裝
 
-**注意:** 本 `install.sh` 僅適用於 `Ubuntu 16.04`
+**注意:** 本 `install.sh` 僅適用於 `Ubuntu 20.04`
 
 ```shell
 git clone https://github.com/taichunmin/git-it-course-docker.git
@@ -23,12 +23,8 @@ sudo bash ./install.sh
 ```shell
 # 預設只會開啟 1 台 client
 docker-compose up -d
-# 可以下這個指令增加或減少 client 到指定數量 (已經執行過 docker-compose up -d 也可重複下)
-docker-compose up -d --scale client=3
+# 可以下這個指令增加或減少 client 到指定數量
+yarn scale 3
 # 若要全部關掉，請使用以下指令
 docker-compose down
 ```
-
-> `-d` 是代表以 daemon 模式執行。  
-> `--scale client=3` 是指定 client 需開 3 台  
-> `client` 的數量自由增減  

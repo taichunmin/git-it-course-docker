@@ -7,7 +7,11 @@ export LANG=C.UTF-8
 export LC_ALL=C.UTF-8
 export LANGUAGE=C.UTF-8
 
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt update && sudo apt upgrade -y
+curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+sudo bash /tmp/nodesource_setup.sh
+rm /tmp/nodesource_setup.sh
+sudo apt install nodejs
 
 if [ ! "$(docker -v)" ]; then
   curl -sSL get.docker.com | sh
@@ -25,5 +29,5 @@ if [ ! -f webapp/.env ]; then
 fi
 
 sudo docker-compose pull
-sudo docker-compose run --rm dashboard yarn
-sudo docker-compose up -d
+sudo docker-compose run --rm dashboard yarn install --production
+sudo yarn scale 1

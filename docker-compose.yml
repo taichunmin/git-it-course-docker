@@ -2,6 +2,8 @@ version: '2'
 services:
   dashboard:
     image: taichunmin/git-it-course-docker:dashboard
+    environment:
+      - DEBUG=socket.io:*,dashboard:*
     networks:
       - frontend
       - backend
@@ -11,6 +13,8 @@ services:
       - ./dashboard/motd:/etc/motd:ro
     ports:
       - "80:80"
+    depends_on:
+      - redis
     restart: always
   redis:
     image: redis:latest

@@ -79,3 +79,19 @@ git-it
 # 驗證是否完成
 git-it verify
 ```
+
+## 新增/編輯檔案
+
+```sh
+# 推薦使用 nano
+nano 檔名
+# 如果要存檔，請按 Ctrl + X，然後按 Y，然後再按 Enter
+```
+
+## GitHub: Support for password authentication removed
+
+![](https://i.imgur.com/sj111Aa.png)
+
+如果你的遠端網址是 GitHub 的 HTTPS，在 2021/8/13 後你就沒辦法以使用者的帳號密碼登入，解決辦法是在改用 personal access token 當作密碼進行登入。
+
+如何建立 personal access token 請看: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token

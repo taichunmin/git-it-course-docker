@@ -1,0 +1,13 @@
+{
+  "name": "git-it-course-docker",
+  "version": "1.0.0",
+  "repository": "git@github.com:taichunmin/git-it-course-docker.git",
+  "author": "taichunmin <taichunmin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clientbash": "clientbash () { docker-compose exec --index=$1 client bash; }; clientbash",
+    "clients": "docker-compose ps client",
+    "scale": "scale () { docker-compose up -d --no-recreate --scale client=$1; }; scale",
+    "status": "docker stats"
+  }
+}
