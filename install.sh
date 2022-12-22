@@ -12,6 +12,7 @@ curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 sudo bash /tmp/nodesource_setup.sh
 rm /tmp/nodesource_setup.sh
 sudo apt install nodejs
+npm install -g yarn
 
 if [ ! "$(docker -v)" ]; then
   curl -sSL get.docker.com | sh
